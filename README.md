@@ -5,6 +5,9 @@ PixelPin OpenID Connect 7 Uses the OpenID Connect identifiy layer on top of OAut
 Requirements
 ------------
 * [Drupal 7](https://www.drupal.org/project/drupal/releases/7.54) (7.*)
+* [ctools](https://www.drupal.org/project/ctools) (7.x-1.12)
+* [entity](https://www.drupal.org/project/entity) (7.x-1.8)
+
 
 Features
 --------
