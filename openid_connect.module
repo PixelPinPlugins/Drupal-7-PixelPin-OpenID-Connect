@@ -552,7 +552,7 @@ function openid_connect_create_user($sub, $userinfo, $client_name) {
   }
 
   $edit = array(
-    'name' => $first_name.$last_name.$sub,
+    'name' => $given_name.$family_name.$sub,
     'pass' => user_password(),
     'mail' => $email,
     'init' => $email,
