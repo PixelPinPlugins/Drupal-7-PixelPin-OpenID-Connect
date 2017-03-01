@@ -156,6 +156,8 @@ function openid_connect_admin_form_submit($form, &$form_state) {
   $enabled_clients = array_filter($enabled_clients);
   variable_set('openid_connect_clients_enabled', $enabled_clients);
 
+  drupal_set_message(t("Configuration saved."), 'status');
+
   foreach ($enabled_clients as $client_name) {
     // Give the client a chance to modify the submitted values.
     $client = openid_connect_get_client($client_name);

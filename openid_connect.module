@@ -420,36 +420,148 @@ function openid_connect_save_destination() {
  */
 function openid_connect_create_user($sub, $userinfo, $client_name) {
 
-  $address = $userinfo['address'];
-  $decodeAddress = json_decode($address);
+  if(isset($userinfo['address'])){
+    $address = $userinfo['address'];
+    $decodeAddress = json_decode($address);
+  }
+  else
+  {
+    $decodeAddress = null;
+  }
 
-  $firstName = $userinfo['given_name'];
-  $lastName = $userinfo['family_name'];
+  //$first_name = $userinfo['given_name'];
+  //$last_name = $userinfo['family_name'];
+  //$email = $userinfo['email'];
+  //$nickname = $userinfo['nickname'];
+  //$gender = $userinfo['gender'];
+  //$birthdate = $userinfo['birthdate'];
+  //$phone_number = $userinfo['phone_number'];
 
 
-  $streetAddress2 = $decodeAddress->{"street_address"};
-  $townCity2 = $decodeAddress->{"locality"};
-  $region2 = $decodeAddress->{"region"};
-  $postalCode2 = $decodeAddress->{"postal_code"};
-  $country2 = $decodeAddress->{"country"};
+  //$streetAddress2 = $decodeAddress->{"street_address"};
+  //$townCity2 = $decodeAddress->{"locality"};
+  //$region2 = $decodeAddress->{"region"};
+  //$postalCode2 = $decodeAddress->{"postal_code"};
+  //$country2 = $decodeAddress->{"country"};
 
-  $streetAddress = (string)$streetAddress2;
-  $townCity = (string)$townCity2;
-  $region = (string)$region2;
-  $postalCode = (string)$postalCode2;
-  $country = (string)$country2;
+  //$street_address = (string)$streetAddress2;
+  //$town_city = (string)$townCity2;
+  //$region = (string)$region2;
+  //$postal_code = (string)$postalCode2;
+  //$country = (string)$country2;
+
+  if(isset($userinfo['given_name'])){
+    $given_name = $userinfo['given_name'];
+  }
+  else
+  {
+    $given_name = '';
+  }
+
+  if(isset($userinfo['family_name'])){
+    $family_name = $userinfo['family_name'];
+  }
+  else
+  {
+    $family_name = '';
+  }
+
+  if(isset($userinfo['email'])){
+    $email = $userinfo['email'];
+  }
+  else
+  {
+    $email = '';
+  }
+
+  if(isset($userinfo['nickname'])){
+    $nickname = $userinfo['nickname'];
+  }
+  else
+  {
+    $$nickname = '';
+  }
+
+  if(isset($userinfo['gender'])){
+    $gender = $userinfo['gender'];
+  }
+  else
+  {
+    $gender = '';
+  }
+
+  if(isset($userinfo['birthdate'])){
+    $birthdate = $userinfo['birthdate'];
+  }
+  else
+  {
+    $birthdate = '';
+  }
+
+  if(isset($userinfo['phone_number'])){
+    $phone_number = $userinfo['phone_number'];
+  }
+  else
+  {
+    $phone_number = '';
+  }
+
+  if(isset($decodeAddress->{"street_address"})){
+    $streetAddress2 = $decodeAddress->{"street_address"};
+    $street_address = (string)$streetAddress2;
+  }
+  else
+  {
+    $street_address = '';
+  }
+
+  if(isset($decodeAddress->{"locality"})){
+    $townCity2 = $decodeAddress->{"locality"};
+    $town_city = (string)$townCity2;
+  }
+  else
+  {
+    $town_city = '';
+  }
+
+  if(isset($decodeAddress->{"region"})){
+    $region2 = $decodeAddress->{"region"};
+    $region = (string)$region2;
+  }
+  else
+  {
+    $region = '';
+  }
+
+ if(isset($decodeAddress->{"postal_code"})){
+    $postalCode2 = $decodeAddress->{"postal_code"};
+    $postal_code = (string)$postalCode2;
+  }
+  else
+  {
+    $postal_code = '';
+  }
+
+  if(isset($decodeAddress->{"country"})){
+    $country2 = $decodeAddress->{"country"};
+    $country = (string)$country2;
+  }
+  else
+  {
+    $country = '';
+  }
 
   $edit = array(
-    'name' => $firstName.$lastName.$sub,
+    'name' => $first_name.$last_name.$sub,
     'pass' => user_password(),
-    'mail' => $userinfo['email'],
-    'init' => $userinfo['email'],
-    'family_name' => $userinfo['family_name'],
-    'given_name' => $userinfo['given_name'],
-    'nickname' => $userinfo['nickname'],
-    'gender' => $userinfo['gender'],
-    'birthdate' => $userinfo['birthdate'],
-    'phone_number' => $userinfo['phone_number'],
+    'mail' => $email,
+    'init' => $email,
+    'family_name' => $family_name,
+    'given_name' => $given_name,
+    'nickname' => $nickname,
+    'gender' => $gender,
+    'birthdate' => $birthdate,
+    'phone_number' => $phone_number,
     'status' => 1,
     'openid_connect_client' => $client_name,
     'openid_connect_sub' => $sub,
@@ -457,25 +569,25 @@ function openid_connect_create_user($sub, $userinfo, $client_name) {
 
   $edit['field_street_address_pixelpin'] = array(
     LANGUAGE_NONE => array(
-      0 => array('value' => $streetAddress),
+      0 => array('value' => $street_address),
     ),
   );
 
   $edit['field_town_city_pixelpin'] = array(
     LANGUAGE_NONE => array(
-      0 => array('value' => $townCity),
+      0 => array('value' => $town_city),
     ),
   );
 
   $edit['field_region_pixelpin'] = array(
     LANGUAGE_NONE => array(
-      0 => array('value' => $postalCode),
+      0 => array('value' => $region),
     ),
   );
 
   $edit['field_postal_code_pixelpin'] = array(
     LANGUAGE_NONE => array(
-      0 => array('value' => $postalCode),
+      0 => array('value' => $postal_code),
     ),
   );
 
