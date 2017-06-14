@@ -1,6 +1,6 @@
 Pixelpin OpenID Connect 7
 =============
-PixelPin OpenID Connect 7 Uses the OpenID Connect identifiy layer on top of OAuth 2.0 protocol to authenticate users using PixelPin.
+PixelPin OpenID Connect 7 Uses the OpenID Connect identity layer on top of OAuth 2.0 protocol to authenticate users using PixelPin.
 
 Requirements
 ------------
