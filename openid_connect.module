@@ -185,7 +185,7 @@ function openid_connect_block_info() {
 function openid_connect_block_view($delta = '') {
   switch($delta) {
     case 'openid_connect_login':
-      if ($delta == 'openid_connect_login' && user_is_anonymous()) {
+      if (user_is_anonymous()) {
         foreach (openid_connect_get_plugins(TRUE) as $client) {
           module_load_include('inc', 'openid_connect', 'includes/openid_connect.forms');
 
@@ -198,7 +198,7 @@ function openid_connect_block_view($delta = '') {
     break;
 
     case 'openid_connect_register':
-      if ($delta == 'openid_connect_register' && user_is_anonymous()) {
+      if (user_is_anonymous()) {
         foreach (openid_connect_get_plugins(TRUE) as $client) {
           module_load_include('inc', 'openid_connect', 'includes/openid_connect.forms');
 
@@ -211,7 +211,7 @@ function openid_connect_block_view($delta = '') {
     break;
 
     case 'openid_connect_login_front_page':
-      if ($delta == 'openid_connect_login_front_page' && user_is_anonymous()) {
+      if (user_is_anonymous()) {
         foreach (openid_connect_get_plugins(TRUE) as $client) {
           module_load_include('inc', 'openid_connect', 'includes/openid_connect.forms');
 
@@ -428,27 +428,6 @@ function openid_connect_create_user($sub, $userinfo, $client_name) {
   {
     $decodeAddress = null;
   }
-
-  //$first_name = $userinfo['given_name'];
-  //$last_name = $userinfo['family_name'];
-  //$email = $userinfo['email'];
-  //$nickname = $userinfo['nickname'];
-  //$gender = $userinfo['gender'];
-  //$birthdate = $userinfo['birthdate'];
-  //$phone_number = $userinfo['phone_number'];
-
-
-  //$streetAddress2 = $decodeAddress->{"street_address"};
-  //$townCity2 = $decodeAddress->{"locality"};
-  //$region2 = $decodeAddress->{"region"};
-  //$postalCode2 = $decodeAddress->{"postal_code"};
-  //$country2 = $decodeAddress->{"country"};
-
-  //$street_address = (string)$streetAddress2;
-  //$town_city = (string)$townCity2;
-  //$region = (string)$region2;
-  //$postal_code = (string)$postalCode2;
-  //$country = (string)$country2;
 
   if(isset($userinfo['given_name'])){
     $given_name = $userinfo['given_name'];
