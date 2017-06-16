@@ -14,7 +14,7 @@ function openid_connect_login_form($form, &$form_state) {
   foreach (openid_connect_get_plugins(TRUE) as $client) {
     $form['openid_connect_client_pixelpin_login'] = array(
       '#type' => 'submit',
-      '#value' => t('Log in with PixelPin'),
+      '#value' => t('Log in Using PixelPin'),
       '#name' => $client['name'],
     );
   }
@@ -28,7 +28,7 @@ function openid_connect_login_front_page_form($form, &$form_state) {
   foreach (openid_connect_get_plugins(TRUE) as $client) {
     $form['openid_connect_client_pixelpin_login_front_page'] = array(
       '#type' => 'submit',
-      '#value' => t('Log in with PixelPin'),
+      '#value' => t('Log in Using PixelPin'),
       '#name' => $client['name'],
     );
   }
