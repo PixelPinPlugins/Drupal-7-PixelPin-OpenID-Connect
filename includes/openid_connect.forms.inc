@@ -159,7 +159,7 @@ function openid_connect_connect_form_submit(&$form, &$form_state) {
   if ($op === 'disconnect') {
     openid_connect_disconnect_account($form_state['account'], $client_name);
     $client = openid_connect_get_client($client_name);
-    drupal_set_message(t('Account successfully disconnected from PixelPin', 'status'));
+    drupal_set_message(t('Account successfully disconnected from PixelPin'));
 
     return;
   }
