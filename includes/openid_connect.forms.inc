@@ -6,7 +6,11 @@
  */
 
 /**
- * Form builder: Log in with an external account.
+ * Adds a SSO button for PixelPin for the login form page.
+ * 
+ * @param type $form
+ * @param type $form_state
+ * @return form element
  */
 function openid_connect_login_form($form, &$form_state) {
   form_load_include($form_state, 'inc', 'openid_connect', 'includes/openid_connect.forms');
@@ -14,7 +18,7 @@ function openid_connect_login_form($form, &$form_state) {
   foreach (openid_connect_get_plugins(TRUE) as $client) {
     $form['openid_connect_client_pixelpin_login'] = array(
       '#type' => 'submit',
-      '#value' => t('Log in with PixelPin'),
+      '#value' => t('Log in Using PixelPin'),
       '#name' => $client['name'],
     );
   }
@@ -22,13 +26,20 @@ function openid_connect_login_form($form, &$form_state) {
   return $form;
 }
 
+/**
+ * Adds a SSO button for PixelPin for the front page.
+ * 
+ * @param type $form
+ * @param type $form_state
+ * @return form element
+ */
 function openid_connect_login_front_page_form($form, &$form_state) {
   form_load_include($form_state, 'inc', 'openid_connect', 'includes/openid_connect.forms');
 
   foreach (openid_connect_get_plugins(TRUE) as $client) {
     $form['openid_connect_client_pixelpin_login_front_page'] = array(
       '#type' => 'submit',
-      '#value' => t('Log in with PixelPin'),
+      '#value' => t('Log in Using PixelPin'),
       '#name' => $client['name'],
     );
   }
@@ -36,6 +47,13 @@ function openid_connect_login_front_page_form($form, &$form_state) {
   return $form;
 }
 
+/**
+ * Adds a SSO button for PixelPin for the registration form page.
+ * 
+ * @param type $form
+ * @param type $form_state
+ * @return form element
+ */
 function openid_connect_register_form($form, &$form_state) {
   form_load_include($form_state, 'inc', 'openid_connect', 'includes/openid_connect.forms');
 
@@ -52,6 +70,9 @@ function openid_connect_register_form($form, &$form_state) {
 
 /**
  * Form submit handler: Log in with an OpenID Connect login provider.
+ * 
+ * @param type $form
+ * @param type $form_state
  */
 function openid_connect_login_form_submit(&$form, &$form_state) {
   openid_connect_save_destination();
@@ -63,6 +84,12 @@ function openid_connect_login_form_submit(&$form, &$form_state) {
   $client->authorize($scopes);
 }
 
+/**
+ * Form submit handler: Register with an OpenID Connect login provider.
+ * 
+ * @param type $form
+ * @param type $form_state
+ */
 function openid_connect_register_form_submit(&$form, &$form_state) {
   openid_connect_save_destination();
 
@@ -73,6 +100,12 @@ function openid_connect_register_form_submit(&$form, &$form_state) {
   $client->authorize($scopes);
 }
 
+/**
+ * Form submit handler: Log in with an OpenID Connect login provider.
+ * 
+ * @param type $form
+ * @param type $form_state
+ */
 function openid_connect_login_front_page_form_submit(&$form, &$form_state) {
   openid_connect_save_destination();
 
@@ -85,6 +118,11 @@ function openid_connect_login_front_page_form_submit(&$form, &$form_state) {
 
 /**
  * Form builder: Connect an external account to your existing Drupal account.
+ * 
+ * @param type $form
+ * @param array $form_state
+ * @param type $account
+ * @return form element
  */
 function openid_connect_connect_form($form, &$form_state, $account) {
   form_load_include($form_state, 'inc', 'openid_connect', 'includes/openid_connect.forms');
@@ -152,6 +190,11 @@ function openid_connect_connect_form($form, &$form_state, $account) {
  * Submit callback for the connect account form.
  *
  * Connect the current user's Drupal account to an external provider.
+ * 
+ * @global type $user
+ * @param type $form
+ * @param type $form_state
+ * @return type
  */
 function openid_connect_connect_form_submit(&$form, &$form_state) {
   list($op, $client_name) = explode('__', $form_state['triggering_element']['#name'], 2);
@@ -159,7 +202,7 @@ function openid_connect_connect_form_submit(&$form, &$form_state) {
   if ($op === 'disconnect') {
     openid_connect_disconnect_account($form_state['account'], $client_name);
     $client = openid_connect_get_client($client_name);
-    drupal_set_message(t('Account successfully disconnected from PixelPin', array('@client' => $client->getLabel())));
+    drupal_set_message(t('Account successfully disconnected from PixelPin'));
 
     return;
   }
