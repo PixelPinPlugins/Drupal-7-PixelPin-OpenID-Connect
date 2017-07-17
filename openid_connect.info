@@ -10,7 +10,7 @@ files[] = includes/OpenIDConnectClientInterface.class.php
 files[] = includes/OpenIDConnectClientBase.class.php
 
 ; Information added by Drupal.org packaging script on 2016-11-02
-version = "7.x-1.0-beta8"
+version = "7.x-1.0"
 core = "7.x"
 project = "openid_connect"
 datestamp = "1478078977"
